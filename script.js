@@ -68,9 +68,18 @@ function getAllExistingPlans() {
       console.log(allPlans[i]);
       var parent = $(`#${allPlans[i].time}`); //find each user input and the time it was done
       var textAreaChild = parent.children("textarea");
-      textAreaChild.val(allPlans[i]); //this tells what the function needs to do with the user input that was found
+      textAreaChild.val(allPlans[i].text); //this tells what the function needs to do with the user input that was found
       console.log(allPlans);
     }
   }
 }
-getAllExistingPlans(); //what why...
+getAllExistingPlans();
+
+// finally clear the entire calendar. just to have a clean slate
+function clearButton(event) {
+  event.preventDefault();
+  localStorage.clear();
+  $("textarea").val("");
+  console.log("clearBtn", event);
+}
+$(".clearBtn").click(clearButton);
